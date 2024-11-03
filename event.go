@@ -20,3 +20,10 @@ func (ev *Event) Msg(message string) {
 func (ev *Event) Msgf(format string, args ...any) {
 	ev.Logger.Logger.Logf(ev.Level, format, args...)
 }
+
+func (ev *Event) Str(key string, value string) *Event {
+	return &Event{
+		Level:  ev.Level,
+		Logger: &Logger{Logger: ev.Logger.Logger.WithField(key, value)},
+	}
+}
