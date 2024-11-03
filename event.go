@@ -37,6 +37,13 @@ func (ev *Event) Int(key string, value int) *Event {
 	}
 }
 
+func (ev *Event) Int64(key string, value int64) *Event {
+	return &Event{
+		Level:  ev.Level,
+		Logger: &Logger{Logger: ev.Logger.Logger.WithField(key, value)},
+	}
+}
+
 func (ev *Event) Dur(key string, value time.Duration) *Event {
 	return &Event{
 		Level:  ev.Level,
